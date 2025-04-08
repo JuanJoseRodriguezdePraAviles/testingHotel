@@ -43,7 +43,7 @@ class Room {
         if(endDate<startDate){
             throw new Error("error: checkIn date should be before check out date");
         }
-        let dateToCheck = startDate;
+        let dateToCheck = new Date(startDate);
         let daysOccupied = 0;
         let daysTotal = 0;
         while(dateToCheck<=endDate) {
@@ -57,6 +57,9 @@ class Room {
     }
 
     static totalOccupancyPercentage(rooms, startDate, endDate) {
+        if(!Array.isArray(rooms) || typeof(startDate)!==typeof(new Date()) || typeof(endDate)!==typeof(new Date())){
+            throw new Error("error: type mismatch");
+        }
         let occupiedRooms = 0;
 
         let totalRooms = 0;

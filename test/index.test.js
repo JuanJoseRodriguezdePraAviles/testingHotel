@@ -378,11 +378,26 @@ it('Should return 50%', () => {
         45,
         20
     );
+    const room2 = new Room(
+        "Room 2",
+        [
+            {
+                name: '',
+                email: '',
+                checkIn: new Date("2025-03-24"),
+                checkOut: new Date("2025-03-26"),
+                discount: 0,
+                room: new Room()
+            }
+        ],
+        45,
+        20
+    );
 
-    const rooms = [room];
+    const rooms = [room, room2];
 
-    const result = Room.totalOccupancyPercentage(rooms, new Date("2024-03-24"), new Date("2024-03-26"));
-    expect(result).tobe(50);
+    const result = Room.totalOccupancyPercentage(rooms, new Date("2024-03-23"), new Date("2024-03-25"));
+    expect(result).toBe(50);
 });
 
 it('Should return 100%', () => {
